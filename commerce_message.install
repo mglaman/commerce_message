@@ -78,4 +78,27 @@ function commerce_message_install() {
     );
     filter_format_save($format);
   }
+
+  // Clean up after the old Backoffice Order module if needed.
+  if (module_exists('commerce_backoffice_order')) {
+    // Move any overridden message types.
+    db_update('message_type')
+      ->fields(array('module' => 'commerce_message'))
+      ->condition('module', 'commerce_backoffice_order')
+      ->execute();
+
+    // Move any overridden rules.
+    db_update('rules_config')
+      ->fields(array('module' => 'commerce_message'))
+      ->condition('module', 'commerce_backoffice_order')
+      ->condition('name', array(
+        'rules_rules_commerce_order_message_create_order',
+        'rules_commerce_order_message_changing_status',
+        'rules_commerce_order_message_payment_entered',
+        'commerce_order_payment_full',
+        'rules_commerce_order_message_cart_add',
+        'rules_commerce_order_message_cart_remove',
+        'rules_commerce_order_message_order_notification'))
+      ->execute();
+  }
 }
