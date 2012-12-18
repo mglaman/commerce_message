@@ -581,7 +581,7 @@ function commerce_message_message_form_submit($form, &$form_state) {
   // Notify field widgets.
   field_attach_submit('message', $form['#entity'], $form['content'], $form_state);
   entity_save('message', $form['#entity']);
-  drupal_set_message(t('Message saved.'));
+  drupal_set_message(t('Message saved.'), 'status', FALSE);
   // Kill the user input so that we can save a new message.
   $form_state['input'] = array();
   $form_state['rebuild'] = TRUE;
