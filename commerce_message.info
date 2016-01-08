@@ -12,3 +12,4 @@ dependencies[] = message
 dependencies[] = message_notify
 
 files[] = includes/views/handlers/commerce_message_handler_area_add_message.inc
+files[] = commerce_message.test
