@@ -56,8 +56,10 @@ function commerce_message_module_implements_alter(&$implementations, $hook) {
  *
  * @link http://drupal.org/node/1272560
  */
-function commerce_message_message_presave($message) {
-  if (!empty($message->mid) || $message->type != 'commerce_order_order_confirmation') {
+function commerce_message_message_presave(Message $message) {
+  // Only support unsaved messages that re-use our order reference field.
+  $wrapper = entity_metadata_wrapper('message', $message);
+  if (!empty($message->mid) || !isset($wrapper->message_commerce_order)) {
     return;
   }
 
