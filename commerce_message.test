@@ -403,6 +403,12 @@ class CommerceMessageTokenTest extends CommerceMessageTestBase {
     $message->save();
 
     $this->assertTrue(isset($message->arguments['!order-summary']));
+
+    $message = message_create('commerce_order_admin_order_confirmation', array(), $this->store_admin);
+    $message->wrapper()->message_commerce_order = $order;
+    $message->save();
+
+    $this->assertTrue(isset($message->arguments['!order-summary']));
   }
 
   public function testTokenCustomMessageType() {
