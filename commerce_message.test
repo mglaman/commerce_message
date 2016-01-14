@@ -514,3 +514,47 @@ class CommerceMessageTokenTest extends CommerceMessageTestBase {
 
   }
 }
+
+class CommerceMessageOrderSummaryTest extends CommerceMessageTestBase {
+  public static function getInfo() {
+    return array(
+      'name' => 'Commerce Message order summary token',
+      'description' => 'Tests the order summary token',
+      'group' => 'Commerce Message',
+    );
+  }
+
+  public function testViewAsOrderOwner() {
+    $original_user = $GLOBALS['user'];
+
+    $customer = $this->createStoreCustomer();
+    $order = $this->createDummyOrder($customer->uid);
+    $message = message_create('commerce_order_order_confirmation', array(), $customer);
+    $message->wrapper()->message_commerce_order = $order;
+    $message->save();
+
+    $GLOBALS['user'] = $customer;
+    $this->assertIdentical($GLOBALS['user']->uid, $customer->uid);
+    $summary = commerce_message_order_summary($message);
+    // The view-dom-id-* class is dynamic each time, so we need to check for
+    // the order total area class in our returned markup.
+    $this->assertTrue(strpos($summary, 'commerce-order-handler-area-order-total') !== FALSE);
+
+    $GLOBALS['user'] = $this->store_admin;
+    $this->assertIdentical($GLOBALS['user']->uid, $this->store_admin->uid);
+    $summary = commerce_message_order_summary($message);
+    $this->assertTrue(strpos($summary, 'commerce-order-handler-area-order-total') !== FALSE);
+
+    // Now there is a chance a payment gateway's IPN returns when there is not
+    // and active session. That means it'll run as anonymous and ruin our fun.
+    // Here we test SQL rewrite is disabled so our messages work.
+    $GLOBALS['user'] = drupal_anonymous_user();
+    $this->assertIdentical($GLOBALS['user']->uid, 0);
+    $summary = commerce_message_order_summary($message);
+    $this->assertTrue(strpos($summary, 'commerce-order-handler-area-order-total') !== FALSE);
+
+    // Reset just in case.
+    $GLOBALS['user'] = $original_user;
+
+  }
+}

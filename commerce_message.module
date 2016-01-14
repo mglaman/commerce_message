@@ -72,14 +72,22 @@ function commerce_message_message_presave(Message $message) {
 /**
  * Message callback; Show order summary.
  *
- * @param $message
+ * @param Message $message
  *   The Message entity.
+ *
+ * @return string
+ *   The output of the View.
  */
 function commerce_message_order_summary(Message $message) {
   $wrapper = entity_metadata_wrapper('message', $message);
   $view = views_get_view('commerce_cart_summary');
   $view->set_arguments(array($wrapper->message_commerce_order->getIdentifier()));
   $view->hide_admin_links = TRUE;
+
+  // Disable SQL query rewrite so this renders properly for token.
+  // @link https://www.drupal.org/node/1895418
+  $view->display['default']->display_options['query']['options']['disable_sql_rewrite'] = TRUE;
+
   return $view->preview();
 }
 
