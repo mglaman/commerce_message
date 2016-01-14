@@ -497,4 +497,20 @@ class CommerceMessageTokenTest extends CommerceMessageTestBase {
 
   }
 
+  public function testCloneHasToken() {
+    $this->drupalLogin($this->store_admin);
+    $edit = array(
+      'name' => 'commerce_order_order_confirmation_cloned_',
+      'description' => 'Commerce Order: order confirmation (cloned)',
+    );
+    $this->drupalPost('admin/structure/messages/manage/commerce_order_order_confirmation/clone', $edit, t('Save message type'));
+
+    if (!message_type_load('commerce_order_order_confirmation_cloned_')) {
+      $this->fail('Failed to clone the message type');
+    }
+
+    $this->drupalGet('admin/structure/messages/manage/commerce_order_order_confirmation_cloned_/fields');
+    $this->assertText('message_commerce_order');
+
+  }
 }
