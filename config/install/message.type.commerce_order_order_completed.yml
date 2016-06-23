@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies: {  }
+type: commerce_order_order_completed
+label: 'Commerce Order: Order completed'
+description: 'Message sent when the order has been completed'
+text:
+  - "Order [message:field-order:0:entity:order-number] at [site:name] is ready!"
+  - "Your order [message:field-order:0:entity:order-number] at [site:name] is completed."
+settings:
+  'token options':
+    clear: false
+    'token replace': true
+  purge:
+    override: false
+    enabled: false
+    quota: null
+    days: null

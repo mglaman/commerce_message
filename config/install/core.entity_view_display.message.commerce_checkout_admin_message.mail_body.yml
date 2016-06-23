@@ -1,0 +1,15 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.message.mail_body
+    - message.type.commerce_checkout_admin_message
+id: message.commerce_checkout_admin_message.mail_body
+targetEntityType: message
+bundle: commerce_checkout_admin_message
+mode: mail_body
+content:
+  partial_1:
+    weight: 0
+hidden:
+  partial_0: true

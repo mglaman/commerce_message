@@ -1,0 +1,19 @@
+{
+  "name": "drupal/commerce_message",
+  "type": "drupal-module",
+  "description": "Commerce Message",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/commerce_message",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "http://drupal.org/project/issues/commerce_message",
+    "source": "http://cgit.drupalcode.org/commerce_message"
+  },
+  "require": {
+      "drupal/core": "~8.1",
+      "drupal/commerce": "8.2.x-dev",
+      "drupal/message": "8.1.x-dev",
+      "drupal/message_notify": "8.1.x-dev"
+  }
+}

@@ -1,0 +1,15 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.message.mail_body
+    - message.type.commerce_checkout_completed
+id: message.commerce_checkout_completed.mail_body
+targetEntityType: message
+bundle: commerce_checkout_completed
+mode: mail_body
+content:
+  partial_1:
+    weight: 0
+hidden:
+  partial_0: true

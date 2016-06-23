@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies: {  }
+type: commerce_checkout_admin_message
+label: 'Commerce Checkout: Admin notification'
+description: 'Message sent to site admins when order completes checkout'
+text:
+  - "Order [message:field-order:0:entity:order-number] at [site:name]"
+  - "A new order ([message:field-order:0:entity:order-number]) has been placed at [site:name].\r\nHere is a link to the order:\r\n\r\n[message:field--order:0:entity:view-url]"
+settings:
+  'token options':
+    clear: false
+    'token replace': true
+  purge:
+    override: false
+    enabled: false
+    quota: null
+    days: null

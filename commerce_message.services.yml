@@ -1,0 +1,7 @@
+services:
+  commerce_message.event_subscriber:
+    class: Drupal\commerce_message\EventSubscriber\CommerceMessageEventSubscriber
+    arguments: ["@entity_type.manager", "@message_notify.sender"]
+    tags:
+      - { name: event_subscriber }
+

@@ -1,0 +1,10 @@
+name: Commerce Message
+description: Provides message history and order confirmation messages.
+core: 8.x
+type: module
+package: Commerce (contrib)
+dependencies:
+  - commerce_order
+  - message
+  - message_notify
+  - token

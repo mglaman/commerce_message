@@ -1,0 +1,23 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.message.commerce_checkout_admin_message.field_order
+    - message.type.commerce_checkout_admin_message
+id: message.commerce_checkout_admin_message.default
+targetEntityType: message
+bundle: commerce_checkout_admin_message
+mode: default
+content:
+  field_order:
+    weight: 1
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  partial_0:
+    weight: 0
+  partial_1:
+    weight: 0
+hidden: {  }

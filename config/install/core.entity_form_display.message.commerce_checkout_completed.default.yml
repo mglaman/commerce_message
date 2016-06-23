@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.message.commerce_checkout_completed.field_order
+    - message.type.commerce_checkout_completed
+id: message.commerce_checkout_completed.default
+targetEntityType: message
+bundle: commerce_checkout_completed
+mode: default
+content:
+  field_order:
+    weight: 0
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+hidden: {  }

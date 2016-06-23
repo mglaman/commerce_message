@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies: {  }
+type: commerce_checkout_completed
+label: 'Commerce Checkout: Checkout complete'
+description: 'Message sent when the checkout complete event fires.'
+text:
+  - "Order [message:field-order:0:entity:order-number] at [site:name]"
+  - "Thanks for your order [message:field-order:0:entity:order-number] at [site:name].\r\n\r\nIf this is your first order with us, you will receive a separate e-mail with login instructions. You can view your order history with us at any time by logging into our website at:\r\n\r\n[site:login-url]\r\n\r\nYou can find the status of your current order at:\r\n\r\n[message:message-commerce-order:view-url]\r\n\r\nPlease contact us if you have any questions about your order."
+settings:
+  'token options':
+    clear: false
+    'token replace': true
+  purge:
+    override: false
+    enabled: false
+    quota: null
+    days: null

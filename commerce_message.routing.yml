@@ -1,0 +1,11 @@
+commerce_message.order_history:
+  path: '/admin/commerce/orders/{commerce_order}/history'
+  defaults:
+    _controller: 'Drupal\commerce_message\Controller\OrderHistoryController::getPage'
+    _title: 'Order history'
+  options:
+    parameters:
+      commerce_order:
+        type: 'entity:commerce_order'
+  requirements:
+    _permission: 'administer orders'

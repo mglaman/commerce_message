@@ -177,31 +177,6 @@ function commerce_message_default_message_type() {
     "rdf_mapping" : []
   }');
 
-  $items['commerce_order_order_confirmation'] = entity_import('message_type', '{
-    "name" : "commerce_order_order_confirmation",
-    "description" : "Commerce Order: order confirmation",
-    "argument_keys" : [],
-    "argument" : [],
-    "category" : "message_type",
-    "data" : { "purge" : { "override" : 0, "enabled" : 0, "quota" : "", "days" : "" } },
-    "language" : "",
-    "arguments" : null,
-    "message_text" : { "und" : [
-        {
-          "value" : "Order @{message:message-commerce-order:order-number} at [site:name]",
-          "format" : null,
-          "safe_value" : "Order @{message:message-commerce-order:order-number} at [site:name]"
-        },
-        {
-          "value" : "Thanks for your order @{message:message-commerce-order:order-number} at [site:name].\r\n\r\nIf this is your first order with us, you will receive a separate e-mail with login instructions. You can view your order history with us at any time by logging into our website at:\r\n\r\n[site:login-url]\r\n\r\nYou can find the status of your current order at:\r\n\r\n[message:message-commerce-order:view-url]\r\n\r\nPlease contact us if you have any questions about your order.",
-          "format" : "commerce_order_message",
-          "safe_value" : "Thanks for your order @{message:message-commerce-order:order-number} at [site:name].\n\nIf this is your first order with us, you will receive a separate e-mail with login instructions. You can view your order history with us at any time by logging into our website at:\n\n[site:login-url]\n\nYou can find the status of your current order at:\n\n[message:message-commerce-order:view-url]\n\nPlease contact us if you have any questions about your order."
-        }
-      ]
-    },
-    "rdf_mapping" : []
-  }');
-
   $items['commerce_order_admin_order_confirmation'] = entity_import('message_type', '{
     "name" : "commerce_order_admin_order_confirmation",
     "description" : "Commerce Order: admin order confirmation",
@@ -228,30 +203,6 @@ function commerce_message_default_message_type() {
   }');
 
   return $items;
-}
-
-/**
- * Implements hook_default_message_type_alter().
- * Use the LANGUAGE_NONE values for the other languages in multilingual sites.
- */
-function commerce_message_default_message_type_alter(&$items) {
-  if (module_exists('locale')) {
-    $languages = locale_language_list();
-    $default_messages = array_keys(commerce_message_default_message_type());
-    foreach ($languages as $langcode => $langname) {
-      foreach ($items as $message_type => $item) {
-        if (!in_array($message_type, $default_messages)) {
-          continue;
-        }
-        if (isset($items[$message_type]->message_text[LANGUAGE_NONE])) {
-          $items[$message_type]->message_text[$langcode] = $items[$message_type]->message_text[LANGUAGE_NONE];
-        }
-        if (isset($items[$message_type]->message_order_display_name[LANGUAGE_NONE])) {
-          $items[$message_type]->message_order_display_name[$langcode] = $items[$message_type]->message_order_display_name[LANGUAGE_NONE];
-        }
-      }
-    }
-  }
 }
 
 /**
