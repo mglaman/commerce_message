@@ -11,9 +11,8 @@
     "source": "http://cgit.drupalcode.org/commerce_message"
   },
   "require": {
-      "drupal/core": "~8.1",
-      "drupal/commerce": "8.2.x-dev",
-      "drupal/message": "8.1.x-dev",
-      "drupal/message_notify": "8.1.x-dev"
+      "drupal/commerce": "2.x-dev",
+      "drupal/message": "1.x-dev",
+      "drupal/message_notify": "1.x-dev"
   }
 }
